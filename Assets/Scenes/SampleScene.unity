@@ -2417,7 +2417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1732452116}
   rb: {fileID: 1732452114}
-  playerspeed: 5
+  playerspeed: 4
   playerjumpforce: 6
 --- !u!1001 &1845892458
 PrefabInstance:
