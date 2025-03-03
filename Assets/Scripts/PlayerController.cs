@@ -1,11 +1,14 @@
+using Unity.Cinemachine;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputManager inputManager;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float playerspeed = 2f;
-    [SerializeField] private float playerjumpforce = 1f;
+    [SerializeField] private float playerspeed = 5f;
+    [SerializeField] private float playerjumpforce = 5f;
+    [SerializeField] private float turnforce = 1f;
     private bool isGrounded = true;
 
 
