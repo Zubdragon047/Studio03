@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -8,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float playerspeed = 5f;
     [SerializeField] private float playerjumpforce = 5f;
-    [SerializeField] private float turnforce = 1f;
     private bool isGrounded = true;
 
 
@@ -34,6 +34,16 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(inputYPlane * playerjumpforce, ForceMode.Impulse);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            ScoreKeeper.instance.AddPoint();
+            Destroy(other.gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -41,6 +51,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
