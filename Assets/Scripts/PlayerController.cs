@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
         Vector3 inputXZPlane = new(input.x, 0, input.z);
         Vector3 inputYPlane = new(0, input.y, 0);
         rb.AddForce(inputXZPlane * playerspeed);
-        if (isGrounded)
+        if (isGrounded && input.y > 0)
         {
             rb.AddForce(inputYPlane * playerjumpforce, ForceMode.Impulse);
+            isGrounded = false;
         }
     }
 
@@ -45,15 +46,17 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            //Debug.Log("Enter Collision: " + collision.gameObject.tag);
             isGrounded = true;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        Debug.Log("Exit Collision: " + collision.gameObject.tag);
+    //        isGrounded = false;
+    //    }
+    //}
 }
